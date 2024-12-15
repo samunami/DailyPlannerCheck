@@ -11,38 +11,52 @@ class TaskListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    var tasks: [(hour: String, task: String?)] = []
+    
+    
+    var tasks: [Task] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        // Загрузка задач
+        loadTasks(for: datePicker.date)
+    }
+    
+    private let taskService = TaskService()
+    
+    private func loadTasks(for date: Date) {
+        tasks = taskService.getTasks(for: date)
+        tableView.reloadData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTaskDetail",
            let detailVC = segue.destination as? TaskDetailViewController,
            let indexPath = tableView.indexPathForSelectedRow {
             
+            
             let task = tasks[indexPath.row]
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
             
             
-            detailVC.task = (name: task.task ?? "No Name",
-                             date: task.hour,
-                             description: "Описание задачи")
+            
+            detailVC.task = (
+                name: task.name,
+                date: "\(formatter.string(from: task.dateStart)) - \(formatter.string(from: task.dateFinish))",
+                description: task.description
+                
+            )
         }
     }
     
+    // Обработка изменения даты
     @IBAction func dateChanged(_ sender: UIDatePicker) {
         print("Дата изменена: \(sender.date)")
         loadTasks(for: sender.date)
-    }
-    
-    private func generateEmptySchedule() {
-        tasks = (0..<24).map { hour in
-            let formattedHour = String(format: "%02d:00 - %02d:00", hour, hour + 1)
-            return (hour: formattedHour, task: nil)
-        }
-        tableView.reloadData()
-    }
-    
-    private func loadTasks(for date: Date) {
-       
-        generateEmptySchedule()
     }
 }
 
@@ -53,17 +67,27 @@ extension TaskListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell") ?? UITableViewCell(style: .subtitle, reuseIdentifier: "TaskCell")
-        let item = tasks[indexPath.row]
-        cell.textLabel?.text = item.hour
-        cell.detailTextLabel?.text = item.task ?? "No task"
+        
+        let task = tasks[indexPath.row]
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .none
+        
+        let startTime = formatter.string(from: task.dateStart)
+        let endTime = formatter.string(from: task.dateFinish)
+        
+        cell.textLabel?.text = task.name
+        cell.detailTextLabel?.text = "\(startTime) - \(endTime)"
+        
         return cell
     }
 }
-
+// Переход на экран
 extension TaskListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Выбран час: \(tasks[indexPath.row].hour)")
+        print("Выбрана задача: \(tasks[indexPath.row].name)")
+        performSegue(withIdentifier: "showTaskDetail", sender: nil)
     }
+    
 }
-
 

@@ -12,15 +12,16 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
+    // Данные о задаче
     var task: (name: String, date: String, description: String)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let task = task {
-            nameLabel.text = task.name
-            dateLabel.text = task.date
-            descriptionLabel.text = task.description
-        }
+
+        // отображение данных
+        title = task?.name
+        nameLabel.text = task?.name
+        dateLabel.text = task?.date
+        descriptionLabel.text = task?.description
     }
 }

@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="384" width="428" height="508"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TaskTableView" id="oyc-xk-HFZ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TaskCell" id="oyc-xk-HFZ">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oyc-xk-HFZ" id="tas-hb-bQ1">
@@ -105,9 +105,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="hcB-03-mmC"/>
                     <connections>
-                        <outlet property="dateLabel" destination="piH-GF-0M4" id="Zuq-pQ-Bns"/>
                         <outlet property="descriptionLabel" destination="YYA-Fb-Tyn" id="fI6-fU-z3I"/>
                         <outlet property="nameLabel" destination="cU3-rQ-tjz" id="LWO-2A-83z"/>
+                        <outlet property="timeLabel" destination="piH-GF-0M4" id="Jub-vu-763"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PsO-0i-7L1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

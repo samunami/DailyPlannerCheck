@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Task {
+struct Task: Codable {
     let id: Int
-    let dateStart: Date
-    let dateFinish: Date
     let name: String
+    let dateStart: TimeInterval
+    let dateFinish: TimeInterval
     let description: String
 }
 

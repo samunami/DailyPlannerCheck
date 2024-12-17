@@ -6,12 +6,18 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Task: Codable {
-    let id: Int
-    let name: String
-    let dateStart: TimeInterval
-    let dateFinish: TimeInterval
-    let description: String
+class Task: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var dateStart: Double = 0
+    @objc dynamic var dateFinish: Double = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var taskDescription: String = ""
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
+
 

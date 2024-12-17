@@ -8,67 +8,35 @@
 import UIKit
 
 class TaskListViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
-    
+    @IBOutlet weak var tableView: UITableView!
+
     private var tasks: [Task] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
-        loadTasks()
-    }
-    
-    private func setupTableView() {
+        
         tableView.dataSource = self
         tableView.delegate = self
+
+        
+        TaskService.shared.fetchTasksFromJSON()
+        loadTasks(for: datePicker.date)
     }
-    
-    private func loadTasks() {
-        TaskService.shared.fetchTasks { [weak self] loadedTasks in
-            DispatchQueue.main.async {
-                if let loadedTasks = loadedTasks {
-                    self?.tasks = loadedTasks
-                    
-                    // минимальная дата UIDatePicker
-                    if let earliestTask = loadedTasks.min(by: { $0.dateStart < $1.dateStart }) {
-                        let earliestDate = Date(timeIntervalSince1970: earliestTask.dateStart)
-                        self?.datePicker.date = earliestDate
-                    }
-                    
-                   
-                    self?.filterTasks(by: self?.datePicker.date ?? Date())
-                } else {
-                    self?.showErrorAlert(message: "Не удалось загрузить задачи.")
-                }
-            }
-        }
+
+    @IBAction func dateChanged(_ sender: UIDatePicker) {
+        loadTasks(for: sender.date)
     }
-    
-    
-    private func filterTasks(by date: Date) {
-        let calendar = Calendar.current
-        tasks = tasks.filter { task in
-            let taskDate = Date(timeIntervalSince1970: task.dateStart)
-            return calendar.isDate(taskDate, inSameDayAs: date)
-        }
+
+    private func loadTasks(for date: Date) {
+        tasks = TaskService.shared.getTasks(for: date)
         tableView.reloadData()
     }
-    
-    @IBAction func dateChanged(_ sender: UIDatePicker) {
-        filterTasks(by: sender.date)
-    }
-    
-    private func showErrorAlert(message: String) {
-        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
-    }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTaskDetail",
-           let indexPath = tableView.indexPathForSelectedRow,
-           let detailVC = segue.destination as? TaskDetailViewController {
+           let detailVC = segue.destination as? TaskDetailViewController,
+           let indexPath = tableView.indexPathForSelectedRow {
             detailVC.task = tasks[indexPath.row]
         }
     }
@@ -79,19 +47,20 @@ extension TaskListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath)
+
         let task = tasks[indexPath.row]
-        
         let formatter = DateFormatter()
         formatter.timeStyle = .short
-        
-        let startTime = Date(timeIntervalSince1970: task.dateStart)
-        let endTime = Date(timeIntervalSince1970: task.dateFinish)
-        
+
+        let startTime = formatter.string(from: Date(timeIntervalSince1970: task.dateStart))
+        let endTime = formatter.string(from: Date(timeIntervalSince1970: task.dateFinish))
+
         cell.textLabel?.text = task.name
-        cell.detailTextLabel?.text = "\(formatter.string(from: startTime)) - \(formatter.string(from: endTime))"
+        cell.detailTextLabel?.text = "\(startTime) - \(endTime)"
+
         return cell
     }
 }
@@ -103,6 +72,7 @@ extension TaskListViewController: UITableViewDelegate {
         performSegue(withIdentifier: "showTaskDetail", sender: nil)
     }
 }
+
 
 
 

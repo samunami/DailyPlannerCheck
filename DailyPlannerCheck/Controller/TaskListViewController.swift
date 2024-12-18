@@ -5,21 +5,38 @@
 //  Created by Alexander on 13.12.2024.
 //
 
+
+
+//
+//  TaskListViewController.swift
+//  DailyPlannerCheck
+//
+
+
+
+
 import UIKit
 
 class TaskListViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func addTaskButtonTapped(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let addTaskVC = storyboard.instantiateViewController(withIdentifier: "AddTaskViewController") as? AddTaskViewController {
+            present(addTaskVC, animated: true, completion: nil)
+        }
+    }
+
 
     private var tasks: [Task] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.dataSource = self
         tableView.delegate = self
 
-        
+
         TaskService.shared.fetchTasksFromJSON()
         loadTasks(for: datePicker.date)
     }
@@ -34,12 +51,17 @@ class TaskListViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showTaskDetail",
-           let detailVC = segue.destination as? TaskDetailViewController,
-           let indexPath = tableView.indexPathForSelectedRow {
-            detailVC.task = tasks[indexPath.row]
+        if segue.identifier == "showTaskDetail" {
+            if let destinationVC = segue.destination as? TaskDetailViewController,
+               let indexPath = tableView.indexPathForSelectedRow {
+                let selectedTask = tasks[indexPath.row]
+                destinationVC.task = selectedTask
+            }
         }
     }
+
+
+
 }
 
 // MARK: - UITableViewDataSource

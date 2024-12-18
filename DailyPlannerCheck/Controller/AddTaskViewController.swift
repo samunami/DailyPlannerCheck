@@ -45,7 +45,7 @@ class AddTaskViewController: UIViewController {
         let taskDescription = descriptionTextView.text ?? ""
         
         // Создание новой задачи
-        let newTask = Task()
+        let newTask = TaskModel()
         newTask.id = UUID().hashValue
         newTask.name = taskName
         newTask.dateStart = startTime

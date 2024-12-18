@@ -18,7 +18,7 @@ class TaskDetailViewController: UIViewController {
         @IBOutlet weak var timeLabel: UILabel!
         @IBOutlet weak var descriptionLabel: UILabel!
 
-    var task: Task?
+    var task: TaskModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()

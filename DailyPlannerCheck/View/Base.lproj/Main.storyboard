@@ -55,7 +55,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="pVN-3R-U1a">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="emS-YM-zxr">
+                        <barButtonItem key="rightBarButtonItem" title="Создать" id="emS-YM-zxr">
                             <connections>
                                 <action selector="addTaskButtonTapped:" destination="BYZ-38-t0r" id="jyB-p9-u75"/>
                                 <segue destination="30s-8F-1BK" kind="show" id="IOQ-Ot-eHV"/>
@@ -80,37 +80,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Kvf-Kk-wZJ">
-                                <rect key="frame" x="20" y="138" width="374" height="131.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU3-rQ-tjz">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="50.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="piH-GF-0M4">
-                                        <rect key="frame" x="0.0" y="70.5" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYA-Fb-Tyn">
-                                        <rect key="frame" x="0.0" y="111" width="374" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cU3-rQ-tjz">
+                                <rect key="frame" x="20" y="138" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="piH-GF-0M4">
+                                <rect key="frame" x="20" y="208.5" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYA-Fb-Tyn">
+                                <rect key="frame" x="20" y="279" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pOH-GH-Nqn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="pOH-GH-Nqn" firstAttribute="bottom" secondItem="Kvf-Kk-wZJ" secondAttribute="bottom" constant="543.5" id="6Kl-tc-52E"/>
-                            <constraint firstItem="Kvf-Kk-wZJ" firstAttribute="leading" secondItem="pOH-GH-Nqn" secondAttribute="leading" constant="20" id="NWw-wf-eJp"/>
-                            <constraint firstItem="Kvf-Kk-wZJ" firstAttribute="top" secondItem="pOH-GH-Nqn" secondAttribute="top" constant="50" id="Nob-EJ-1MP"/>
-                            <constraint firstItem="pOH-GH-Nqn" firstAttribute="trailing" secondItem="Kvf-Kk-wZJ" secondAttribute="trailing" constant="20" id="S2f-5q-XKo"/>
+                            <constraint firstItem="piH-GF-0M4" firstAttribute="top" secondItem="cU3-rQ-tjz" secondAttribute="bottom" constant="50" id="4zf-2n-Crk"/>
+                            <constraint firstItem="cU3-rQ-tjz" firstAttribute="top" secondItem="pOH-GH-Nqn" secondAttribute="top" constant="50" id="GeN-jk-afm"/>
+                            <constraint firstItem="pOH-GH-Nqn" firstAttribute="trailing" secondItem="YYA-Fb-Tyn" secondAttribute="trailing" constant="20" id="LPK-pD-A50"/>
+                            <constraint firstItem="YYA-Fb-Tyn" firstAttribute="top" secondItem="piH-GF-0M4" secondAttribute="bottom" constant="50" id="d6o-5s-1u8"/>
+                            <constraint firstItem="pOH-GH-Nqn" firstAttribute="trailing" secondItem="piH-GF-0M4" secondAttribute="trailing" constant="20" id="enO-ja-aSP"/>
+                            <constraint firstItem="pOH-GH-Nqn" firstAttribute="trailing" secondItem="cU3-rQ-tjz" secondAttribute="trailing" constant="20" id="nVs-1v-VHB"/>
+                            <constraint firstItem="YYA-Fb-Tyn" firstAttribute="leading" secondItem="pOH-GH-Nqn" secondAttribute="leading" constant="20" id="pBY-0N-vgI"/>
+                            <constraint firstItem="cU3-rQ-tjz" firstAttribute="leading" secondItem="pOH-GH-Nqn" secondAttribute="leading" constant="20" id="usf-4F-wX7"/>
+                            <constraint firstItem="piH-GF-0M4" firstAttribute="leading" secondItem="pOH-GH-Nqn" secondAttribute="leading" constant="20" id="ybz-on-TQw"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hcB-03-mmC"/>
@@ -123,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PsO-0i-7L1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3354" y="-295"/>
+            <point key="canvasLocation" x="3353.6231884057975" y="-295.3125"/>
         </scene>
         <!--Add Task View Controller-->
         <scene sceneID="6o8-go-BMu">

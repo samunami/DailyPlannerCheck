@@ -27,7 +27,7 @@ class TaskService {
             if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
                 try realm.write {
                     for json in jsonArray {
-                        let task = Task()
+                        let task = TaskModel()
                         task.id = json["id"] as? Int ?? 0
                         task.dateStart = json["dateStart"] as? Double ?? 0
                         task.dateFinish = json["dateFinish"] as? Double ?? 0
@@ -43,11 +43,11 @@ class TaskService {
     }
 
     // Получение задач
-    func getTasks(for date: Date) -> [Task] {
+    func getTasks(for date: Date) -> [TaskModel] {
         let startOfDay = Calendar.current.startOfDay(for: date).timeIntervalSince1970
         let endOfDay = startOfDay + 86400
 
-        let tasks = realm.objects(Task.self)
+        let tasks = realm.objects(TaskModel.self)
             .filter("dateStart >= %@ AND dateStart < %@", startOfDay, endOfDay)
             .sorted(byKeyPath: "dateStart", ascending: true)
 

@@ -28,7 +28,7 @@ class TaskListViewController: UIViewController {
     }
 
 
-    private var tasks: [Task] = []
+    private var tasks: [TaskModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

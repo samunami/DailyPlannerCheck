@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class Task: Object {
+class TaskModel: Object {
     @objc dynamic var id: Int = 0
     @objc dynamic var dateStart: Double = 0
     @objc dynamic var dateFinish: Double = 0

@@ -58,11 +58,18 @@ class AddTaskViewController: UIViewController {
             try realm.write {
                 realm.add(newTask)
             }
-            dismiss(animated: true, completion: nil)
+            
+            // Возврат на главный экран
+            if let navigationController = navigationController {
+                navigationController.popViewController(animated: true)
+            } else {
+                dismiss(animated: true, completion: nil)
+            }
         } catch {
             showAlert(message: "Ошибка сохранения задачи: \(error.localizedDescription)")
         }
     }
+
     
     private func showAlert(message: String) {
         let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
